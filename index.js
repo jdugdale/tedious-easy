@@ -1,3 +1,4 @@
+var _ = require('lodash');
 var tedious = require('tedious');
 var Connection = tedious.Connection;
 var Request = tedious.Request;
@@ -33,7 +34,7 @@ module.exports = function(connConfig) {
             request.on('row', cols => {
                 var obj = {};
                 cols.forEach(col => {
-                    obj[col.metadata.colName] = col.value;
+                    obj[_.camelCase(col.metadata.colName)] = col.value;
                 });
                 arr.push(obj);
             });
@@ -60,7 +61,7 @@ module.exports = function(connConfig) {
             request.on('row', cols => {
                 var obj = {};
                 cols.forEach(col => {
-                    obj[col.metadata.colName] = col.value;
+                    obj[_.camelCase(col.metadata.colName)] = col.value;
                 });
                 arr.push(obj);
             });
