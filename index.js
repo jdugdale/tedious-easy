@@ -22,7 +22,7 @@ module.exports = function(connConfig) {
             var request = new Request(sproc, (err, count, rows) => {
                 console.log(`${count} rows returned`);
                 conn.close();
-                callback(arr);
+                callback(arr, err);
             });
 
             if (params) {
@@ -49,7 +49,7 @@ module.exports = function(connConfig) {
             var request = new Request(sql, (err, count, rows) => {
                 console.log(`${count} rows returned`);
                 conn.close();
-                callback(arr);
+                callback(arr, err);
             });
 
             if (params) {
